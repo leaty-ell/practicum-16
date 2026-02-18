@@ -1,49 +1,34 @@
-def is_prime(num) -> bool:
+def ratosphen(n) -> set:
     """
-    Checks if a number is prime.
+    Finds all prime numbers less than n using the Sieve of Eratosthenes algorithm with sets.
     
     Args:
-        num (int): Number to check
+        n (int): Upper bound (exclusive). Finds primes less than n.
     
     Returns:
-        bool: True if the number is prime, False otherwise
+        set: A set containing all prime numbers less than n
     """
-    if num < 2:
-        return False
-    if num == 2:
-        return True
-    if num % 2 == 0:
-        return False
+    if n <= 2:
+        return set()
     
-    for i in range(3, int(num**0.5) + 1, 2):
-        if num % i == 0:
-            return False
-    return True
-
-def find_primes(n) -> list:
-    """
-    Finds all prime numbers less than n.
+    numbers = set(range(2, n))
     
-    Args:
-        n (int): Upper bound (exclusive)
+    for i in range(2, int(n**0.5) + 1):
+        for multiple in range(i * 2, n, i):
+            numbers.discard(multiple)
     
-    Returns:
-        list: List of prime numbers less than n
-    """
-    primes = []
-    for num in range(2, n):
-        if is_prime(num):
-            primes.append(num)
-    
-    return primes
+    return numbers
 
 def main():
     """
-    Main function to read input and display result
+    Main function to read input and display result.
     """
     n = int(input())
-    primes = find_primes(n)
-    print(primes)
+    primes_set = ratosphen(n)
+    primes_list = sorted(primes_set)
+    print(primes_list)
 
 if __name__ == "__main__":
     main()
+
+
