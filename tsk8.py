@@ -1,4 +1,3 @@
-```python
 from itertools import combinations
 
 def get_all_subsets(numbers) -> list:
@@ -31,4 +30,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-```
